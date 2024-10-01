@@ -1,0 +1,91 @@
+cmake_minimum_required(VERSION 3.10)
+
+# Project name
+project(UnikraftCloudV1InstancesApiExample)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Set path to the generated OpenAPI client code (change to your actual path)
+set(OPENAPI_CLIENT_DIR "../..")
+
+# Include directories for the generated code
+include_directories(
+    ${OPENAPI_CLIENT_DIR}/include
+)
+
+# Find cpprestsdk package
+find_package(cpprestsdk REQUIRED)
+
+# Find OpenSSL package
+find_package(OpenSSL REQUIRED)
+
+# Source files
+set(SOURCES
+    main.cpp
+    ${OPENAPI_CLIENT_DIR}/src/AnyType.cpp
+    ${OPENAPI_CLIENT_DIR}/src/ApiClient.cpp
+    ${OPENAPI_CLIENT_DIR}/src/ApiConfiguration.cpp
+    ${OPENAPI_CLIENT_DIR}/src/ApiException.cpp
+    ${OPENAPI_CLIENT_DIR}/src/HttpContent.cpp
+    ${OPENAPI_CLIENT_DIR}/src/JsonBody.cpp
+    ${OPENAPI_CLIENT_DIR}/src/ModelBase.cpp
+    ${OPENAPI_CLIENT_DIR}/src/MultipartFormData.cpp
+    ${OPENAPI_CLIENT_DIR}/src/Object.cpp
+    ${OPENAPI_CLIENT_DIR}/src/api/InstancesApi.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_request.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_request_env.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_request_scale_to_zero.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_request_service_group.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_request_service_group_domains_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Create_instance_request_volumes_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Delete_instances_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Delete_instances_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Delete_instances_200_response_data_instances_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Delete_instances_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_by_uuid_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_by_uuid_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_logs_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_logs_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_logs_200_response_data_instances_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_logs_200_response_data_instances_inner_available.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_logs_200_response_data_instances_inner_range.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_logs_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_metrics_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_metrics_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instance_metrics_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instances_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instances_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_instances_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Get_services_200_response_data_service_groups_inner_instances_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_metrics.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_network_interfaces_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_restart.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_service_group.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_service_group_domains_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_service_group_domains_inner_certificate.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Instance_snapshot.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Start_instances_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Start_instances_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Start_instances_200_response_data_instances_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Start_instances_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Stop_instances_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Wait_for_instances_200_response.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Wait_for_instances_200_response_data.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Wait_for_instances_200_response_data_instances_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Wait_for_instances_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Wait_for_instances_request_inner.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Service_mapping.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Certificate.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Certificate_validation.cpp
+    ${OPENAPI_CLIENT_DIR}/src/model/Certificate_service_groups_inner.cpp
+)
+
+# Add executable target
+add_executable(UnikraftCloudV1InstancesApiExample ${SOURCES})
+
+# Link dependencies to the project
+target_link_libraries(UnikraftCloudV1InstancesApiExample PRIVATE cpprestsdk::cpprest OpenSSL::SSL OpenSSL::Crypto)
